@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbhuxu0wqow51"]
+
+[ext_resource type="FontFile" uid="uid://dtecw6viugugm" path="res://assets/fonts/coolvetica rg it.otf" id="1_a8xe5"]
+[ext_resource type="Script" path="res://player_level_display.gd" id="1_f2rei"]
+
+[node name="PlayerLevelDisplay" type="Node2D"]
+script = ExtResource("1_f2rei")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
+[node name="Level" type="Label" parent="."]
+offset_left = 348.0
+offset_top = 35.0
+offset_right = 443.0
+offset_bottom = 156.0
+theme_override_fonts/font = ExtResource("1_a8xe5")
+theme_override_font_sizes/font_size = 100
+text = "0"

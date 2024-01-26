@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://dyysekjn7wyf1"]
+[gd_scene load_steps=2 format=3 uid="uid://dyysekjn7wyf1"]
+
+[ext_resource type="PackedScene" uid="uid://f34yrjjo5b54" path="res://level.tscn" id="1_2ork6"]
 
 [node name="Player" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Level" parent="." instance=ExtResource("1_2ork6")]

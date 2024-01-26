@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://f34yrjjo5b54"]
+[gd_scene load_steps=2 format=3 uid="uid://f34yrjjo5b54"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_xhvp4"]
 
 [node name="Level" type="Node"]
+script = ExtResource("1_xhvp4")
+
+[connection signal="xp_changed" from="." to="." method="_on_xp_changed"]
