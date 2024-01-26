@@ -10,3 +10,6 @@
 [node name="Level" parent="." instance=ExtResource("1_2ork6")]
 
 [node name="PlayerLevelDisplay" parent="." instance=ExtResource("2_83txl")]
+
+[connection signal="leveled_up" from="Level" to="PlayerLevelDisplay" method="add_level_up"]
+[connection signal="xp_changed" from="Level" to="PlayerLevelDisplay" method="add_xp"]

@@ -8,7 +8,7 @@ script = ExtResource("1_f2rei")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 
-[node name="Level" type="Label" parent="."]
+[node name="LevelDisplay" type="Label" parent="."]
 offset_left = 348.0
 offset_top = 35.0
 offset_right = 443.0

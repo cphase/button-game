@@ -1,8 +1,7 @@
 extends Node2D
 
 var level_queue = []
-var level
-var xp
+var animate = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,14 +10,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if animate:
+		$LevelDisplay.text = str("Level: ", level_queue.pop_front())
+		if (level_queue.size() == 0):
+			animate = false
 	
 	
 func add_xp(old, new):
 	pass
 
 func add_level_up(level, new_required):
-	$Level.text = level
+	level_queue.push_back(level)
+	animate = true
 	
 func redraw_xp():
 	pass

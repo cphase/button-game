@@ -1,7 +1,7 @@
 extends Node
 
-signal xp_changed(old, new)
 signal leveled_up(level, new_required)
+signal xp_changed(old, new)
 
 @export var level = 0
 @export var xp = 0
@@ -44,3 +44,7 @@ func _process(delta):
 
 func _on_add_xp_pressed():
 	add_xp(50)
+
+
+func _on_add_xp_1000_pressed():
+	add_xp(1000)
