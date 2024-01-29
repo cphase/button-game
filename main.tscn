@@ -33,5 +33,3 @@ script = ExtResource("3_35q6q")
 
 [connection signal="pressed" from="AddXp" to="Player/Level" method="_on_add_xp_pressed"]
 [connection signal="pressed" from="AddXp1000" to="Player/Level" method="_on_add_xp_1000_pressed"]
-
-[editable path="Player"]
