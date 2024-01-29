@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c17cbjyftwa0a"]
+[gd_scene load_steps=4 format=3 uid="uid://c17cbjyftwa0a"]
 
 [ext_resource type="PackedScene" uid="uid://dyysekjn7wyf1" path="res://player.tscn" id="1_57xd2"]
 [ext_resource type="Script" path="res://main.gd" id="1_bo0k0"]
+[ext_resource type="Script" path="res://Fps.gd" id="3_35q6q"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bo0k0")
@@ -21,6 +22,14 @@ offset_top = 371.0
 offset_right = 1217.0
 offset_bottom = 654.0
 text = "Add 1000 XP"
+
+[node name="Fps" type="Label" parent="."]
+offset_left = 1506.0
+offset_top = 6.0
+offset_right = 1546.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 30
+script = ExtResource("3_35q6q")
 
 [connection signal="pressed" from="AddXp" to="Player/Level" method="_on_add_xp_pressed"]
 [connection signal="pressed" from="AddXp1000" to="Player/Level" method="_on_add_xp_1000_pressed"]
