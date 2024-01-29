@@ -12,11 +12,13 @@ func _ready():
 func _physics_process(delta):
 	physics_frame_count += 1
 	if animate and physics_frame_count >= (1 / delta) / framerate:
-		$LevelDisplay.text = str("Level: ", level_queue.pop_front())
-		if (level_queue.size() == 0):
-			animate = false
+		animate_level()
 		physics_frame_count = 0
 
+func animate_level():
+	$LevelDisplay.text = str("Level: ", level_queue.pop_front())
+	if (level_queue.size() == 0):
+		animate = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
