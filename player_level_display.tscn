@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbhuxu0wqow51"]
+[gd_scene load_steps=8 format=3 uid="uid://cbhuxu0wqow51"]
 
 [ext_resource type="FontFile" uid="uid://dtecw6viugugm" path="res://assets/fonts/coolvetica rg it.otf" id="1_a8xe5"]
 [ext_resource type="Script" path="res://player_level_display.gd" id="1_f2rei"]
+[ext_resource type="Script" path="res://XpBarTip.gd" id="3_21kbd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu62a"]
 bg_color = Color(0, 0, 0, 1)
@@ -12,7 +13,15 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1j78"]
+bg_color = Color(0, 0.203922, 0.454902, 1)
+skew = Vector2(0.155, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6tli"]
+bg_color = Color(0.364706, 0.627451, 1, 1)
+skew = Vector2(0.155, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi3mk"]
 bg_color = Color(1, 1, 1, 1)
 skew = Vector2(0.155, 0)
 
@@ -34,9 +43,26 @@ offset_right = 280.0
 offset_bottom = 54.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_xu62a")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="NewXpBar" type="Panel" parent="."]
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 276.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1j78")
+
+[node name="XpBar" type="Panel" parent="."]
 offset_left = 4.0
 offset_top = 34.0
 offset_right = 44.0
 offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6tli")
+
+[node name="XpBarTip" type="Panel" parent="XpBar"]
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qi3mk")
+script = ExtResource("3_21kbd")
+
+[connection signal="xp_growing" from="." to="XpBar/XpBarTip" method="_on_player_level_display_xp_growing"]
+[connection signal="xp_stopped" from="." to="XpBar/XpBarTip" method="_on_player_level_display_xp_stopped"]
