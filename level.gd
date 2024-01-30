@@ -13,8 +13,9 @@ var previous_required_xp = 0
 func add_xp(amount):
 	if amount > 0:
 		xp += amount
-		xp_changed.emit(xp - amount, xp)
+		#first emit levels up if needed.
 		check_level_up()
+		xp_changed.emit(xp - amount, xp)
 	
 func check_level_up():
 	while xp >= required_xp:
@@ -34,16 +35,13 @@ func get_next_required_xp():
 func _ready():
 	leveled_up.emit(level, required_xp)
 	xp_changed.emit(xp, xp)
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-
 func _on_add_xp_pressed():
 	add_xp(50)
-
 
 func _on_add_xp_1000_pressed():
 	add_xp(1000)

@@ -5,14 +5,16 @@ signal xp_stopped()
 
 enum {ANIM_NONE, ANIM_LEVEL, ANIM_NEW_XP, ANIM_XP}
 
-var current_xp = 0
+@export var bar_length = 272
+@export var framerate = 12
+@export var xp_rise_time = 0.5
 
-var bar_length = 272
+var current_xp = 0
 var old_xp_required = 0
 var xp_required = 100
+
 var level_queue = []
 var anim_status = ANIM_NONE
-var framerate = 12
 var physics_frame_count = 0
 var new_xp_frames = []
 var xp_frames = []
@@ -54,17 +56,14 @@ func _process(delta):
 	pass
 
 func add_xp(old, new):
-	#CHECK THE LEVEL QUEUE
+	# check the level queue if we are leveling up
 	generate_xp_frames(old, new)
 	
 func generate_xp_frames(old, new):
-	var frames = framerate / 2
+	var frames = framerate * xp_rise_time
 	#var percentage_per_frame = 
 
 func add_level_up(level, old_required, new_required):
 	level_queue.push_back(level)
 	old_xp_required = old_required
 	xp_required = new_required
-	
-func redraw_xp():
-	pass
