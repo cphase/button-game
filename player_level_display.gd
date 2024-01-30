@@ -26,6 +26,8 @@ var xp_frames = []
 
 var held_animation = false
 
+var temp_color = Color("5da0ff")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$XpBar.size.x = 0
@@ -54,6 +56,8 @@ func animate_xp():
 	#if we are finished animating the xp
 	if level_queue.size() > 0 and xp_frames.size() == 0:
 		anim_status = ANIM_LEVEL
+		temp_color = $XpBar.get_theme_stylebox("panel").bg_color
+		$XpBar.get_theme_stylebox("panel").bg_color = Color("a0c2ff")
 		#after this we will be coming back to this function
 	elif xp_frames.size() == 0:
 		#set the current xp to new value and we are done animating for now
@@ -84,6 +88,7 @@ func animate_level():
 	#if we are finished animating the level ups
 	if (level_queue.size() == 0):
 		# set xp bar back to zero for final animation
+		$XpBar.get_theme_stylebox("panel").bg_color = temp_color
 		$XpBar.size.x = 0
 		$NewXpBar.size.x = 0
 		#$NewXpBar.queue_redraw()
