@@ -33,13 +33,13 @@ func animate_xp():
 	if new_xp_animation:
 		animate_new_xp()
 	else:
-		$XpBar.size.x = (xp_frames.pop_front() - old_xp_required / xp_required) * bar_length
+		$XpBar.size.x = ((xp_frames.pop_front() - old_xp_required) / (xp_required - old_xp_required)) * bar_length
 		if (xp_frames.size() == 0):
 			xp_animation = false
 	
 func animate_new_xp():
 	var length = new_xp_frames.pop_front()
-	$NewXpBar.size.x = (length - old_xp_required / xp_required) * bar_length
+	$NewXpBar.size.x = ((length - old_xp_required) / (xp_required - old_xp_required)) * bar_length
 	xp_frames.push_back(length)
 	if (new_xp_frames.size() == 0):
 		new_xp_animation = false
