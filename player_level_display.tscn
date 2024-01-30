@@ -59,7 +59,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_x6tli")
 
 [node name="XpBarTip" type="Panel" parent="XpBar"]
 layout_mode = 0
-offset_right = 2.0
+offset_right = 3.0
 offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qi3mk")
 script = ExtResource("3_21kbd")

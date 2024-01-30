@@ -33,8 +33,7 @@ func get_next_required_xp():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	leveled_up.emit(level, required_xp)
-	xp_changed.emit(xp, xp)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
