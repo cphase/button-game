@@ -92,6 +92,9 @@ func _process(delta):
 
 func add_xp(old, new):
 	# check the level queue if we are leveling up
+	# maybe do nothing in regards to animation if we are already in an animation and just update the values
+	# issue where spamming the xp during an animation adds too much to the animation
+	# maybe make level up animation take constant time
 	new_xp = new
 	if (level_queue.size() > 0):
 		#generate a full xp animation
