@@ -24,6 +24,8 @@ var physics_frame_count = 0
 var new_xp_frames = []
 var xp_frames = []
 
+var held_animation = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$XpBar.size.x = 0
@@ -47,7 +49,7 @@ func _physics_process(delta):
 func animate_xp():
 	var size = xp_frames.pop_front()
 	$XpBar.size.x = size
-	$XpBar.queue_redraw()
+	#$XpBar.queue_redraw()
 	xp_growing.emit(size)
 	#if we are finished animating the xp
 	if level_queue.size() > 0 and xp_frames.size() == 0:
@@ -58,12 +60,20 @@ func animate_xp():
 		xp_stopped.emit()
 		current_xp = new_xp
 		anim_status = ANIM_NONE
+		# check if we got another animation do do during the previous one
+		if held_animation:
+			held_animation = false
+			#temporarily speed up animation to avoid graphical issues
+			var temp = xp_rise_time
+			xp_rise_time = 0.1
+			add_xp(new_xp)
+			xp_rise_time = temp
 	
 func animate_new_xp():
 	xp_stopped.emit()
 	var frame = new_xp_frames.pop_front()
 	$NewXpBar.size.x = frame
-	$NewXpBar.queue_redraw()
+	#$NewXpBar.queue_redraw()
 	xp_frames.push_back(frame)
 	if new_xp_frames.size() == 0:
 		anim_status = ANIM_XP
@@ -76,8 +86,8 @@ func animate_level():
 		# set xp bar back to zero for final animation
 		$XpBar.size.x = 0
 		$NewXpBar.size.x = 0
-		$NewXpBar.queue_redraw()
-		$XpBar.queue_redraw()
+		#$NewXpBar.queue_redraw()
+		#$XpBar.queue_redraw()
 		current_xp = final_old_xp_required
 		#set the xp range correctly
 		xp_required = final_xp_required
@@ -90,20 +100,22 @@ func animate_level():
 func _process(delta):
 	pass
 
-func add_xp(old, new):
-	# check the level queue if we are leveling up
-	# maybe do nothing in regards to animation if we are already in an animation and just update the values
-	# issue where spamming the xp during an animation adds too much to the animation
-	# maybe make level up animation take constant time
+#try not to do this too often to keep animation smooth
+func add_xp(new):
 	new_xp = new
-	if (level_queue.size() > 0):
-		#generate a full xp animation
-		generate_xp_frames(true)
-		anim_status = ANIM_NEW_XP
-	# this will be our last animation
-	else:
-		generate_xp_frames(false)
-		anim_status = ANIM_NEW_XP
+	if anim_status == ANIM_NONE:
+		if level_queue.size() > 0:
+			#generate a full xp animation
+			generate_xp_frames(true)
+			anim_status = ANIM_NEW_XP
+		# this will be our last animation
+		else:
+			generate_xp_frames(false)
+			anim_status = ANIM_NEW_XP
+	elif anim_status == ANIM_NEW_XP or anim_status == ANIM_XP:
+		#save most recent value to animate at end
+		#this makes spammed xp increases not lock up the animation
+		held_animation = true
 	
 func generate_xp_frames(full):
 	var num_frames = framerate * xp_rise_time

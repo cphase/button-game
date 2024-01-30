@@ -1,7 +1,7 @@
 extends Node
 
 signal leveled_up(level, old_required, new_required)
-signal xp_changed(old, new)
+signal xp_changed(new)
 
 @export var level = 0
 @export var xp = 0
@@ -15,7 +15,7 @@ func add_xp(amount):
 		xp += amount
 		#first emit levels up if needed.
 		check_level_up()
-		xp_changed.emit(xp - amount, xp)
+		xp_changed.emit(xp)
 	
 func check_level_up():
 	while xp >= required_xp:

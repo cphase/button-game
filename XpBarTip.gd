@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func _on_player_level_display_xp_growing(xp_position):
-	position.x = xp_position - 3
+	position.x = xp_position - size.x
 	show()
 
 
