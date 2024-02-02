@@ -3,9 +3,12 @@ extends Node2D
 signal xp_growing(xp_position)
 signal xp_stopped()
 
+# animation states
 enum {ANIM_NONE, ANIM_LEVEL, ANIM_NEW_XP, ANIM_XP}
 
+#length of the xp bar
 @export var bar_length = 272
+
 #levels get animated at 1/2 framerate using toggle
 @export var framerate = 24
 @export var xp_rise_time = 0.5
