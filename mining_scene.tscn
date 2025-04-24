@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu13wp17qoa8q"]
 
-[ext_resource type="Script" path="res://mining_scene.gd" id="1_arspg"]
+[ext_resource type="Script" uid="uid://bgmgutdk5siiv" path="res://mining_scene.gd" id="1_arspg"]
 [ext_resource type="FontFile" uid="uid://cthm6xji2bhm" path="res://assets/fonts/coolvetica rg.otf" id="1_elgwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pha17"]

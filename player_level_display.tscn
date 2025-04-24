@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbhuxu0wqow51"]
 
 [ext_resource type="FontFile" uid="uid://dtecw6viugugm" path="res://assets/fonts/coolvetica rg it.otf" id="1_a8xe5"]
-[ext_resource type="Script" path="res://player_level_display.gd" id="1_f2rei"]
-[ext_resource type="Script" path="res://XpBarTip.gd" id="3_21kbd"]
+[ext_resource type="Script" uid="uid://d1b2iu0qs2imo" path="res://player_level_display.gd" id="1_f2rei"]
+[ext_resource type="Script" uid="uid://cjm4xwei43yui" path="res://XpBarTip.gd" id="3_21kbd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu62a"]
 bg_color = Color(0, 0, 0, 1)
@@ -63,6 +63,14 @@ offset_right = 3.0
 offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qi3mk")
 script = ExtResource("3_21kbd")
+
+[node name="XPAmount" type="Label" parent="."]
+offset_left = 122.0
+offset_top = 10.0
+offset_right = 282.0
+offset_bottom = 33.0
+text = "0 XP"
+horizontal_alignment = 2
 
 [connection signal="xp_growing" from="." to="XpBar/XpBarTip" method="_on_player_level_display_xp_growing"]
 [connection signal="xp_stopped" from="." to="XpBar/XpBarTip" method="_on_player_level_display_xp_stopped"]

@@ -72,6 +72,7 @@ func animate_xp():
 		current_xp = new_xp
 		anim_status = ANIM_NONE
 		# check if we got another animation do do during the previous one
+		##TODO: probably count held animations
 		if held_animation:
 			held_animation = false
 			#temporarily speed up animation to avoid graphical issues
@@ -115,6 +116,7 @@ func _process(delta):
 #try not to do this too often to keep animation smooth
 func add_xp(new):
 	new_xp = new
+	$XPAmount.text = str(new, " XP")
 	if anim_status == ANIM_NONE:
 		if level_queue.size() > 0:
 			#generate a full xp animation
