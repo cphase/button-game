@@ -10,9 +10,8 @@ enum {ANIM_NONE, ANIM_LEVEL, ANIM_NEW_XP, ANIM_XP}
 @export var bar_length = 272
 
 #levels get animated at 1/2 framerate using toggle
-@export var framerate = 24
-@export var xp_rise_time = 0.5
-var toggle = true;
+@export var framerate = 60
+@export var xp_rise_time = 0.3
 
 var current_xp = 0
 var new_xp = 0
@@ -43,15 +42,13 @@ func _physics_process(delta):
 	#animate at a constant framerate
 	if physics_frame_count >= (1 / delta) / framerate:
 		#which animation to do based on status
-		toggle = !toggle
 		match anim_status:
 			ANIM_NEW_XP:
 				animate_new_xp()
 			ANIM_XP:
 				animate_xp()
 			ANIM_LEVEL:
-				if toggle:
-					animate_level()
+				animate_level()
 		#reset the frame counter
 		physics_frame_count = 0
 
@@ -75,10 +72,13 @@ func animate_xp():
 		if held_animation:
 			held_animation = false
 			#temporarily speed up animation to avoid graphical issues
+			'''
+			#Don't think this is needed anymore
 			var temp = xp_rise_time
 			xp_rise_time = 0.1
 			add_xp(new_xp)
 			xp_rise_time = temp
+			'''
 	
 func animate_new_xp():
 	xp_stopped.emit()
