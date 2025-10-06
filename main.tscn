@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c17cbjyftwa0a"]
 
 [ext_resource type="PackedScene" uid="uid://dyysekjn7wyf1" path="res://player.tscn" id="1_57xd2"]
-[ext_resource type="Script" path="res://main.gd" id="1_bo0k0"]
-[ext_resource type="Script" path="res://Fps.gd" id="3_35q6q"]
+[ext_resource type="Script" uid="uid://d0t8dea7mio0k" path="res://main.gd" id="1_bo0k0"]
+[ext_resource type="Script" uid="uid://sqlakp3plwx2" path="res://Fps.gd" id="3_35q6q"]
 [ext_resource type="PackedScene" uid="uid://bu13wp17qoa8q" path="res://mining_scene.tscn" id="4_yslyk"]
 
 [node name="Main" type="Node"]
