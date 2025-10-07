@@ -28,6 +28,10 @@ var physics_frame_count = 0
 var new_xp_frames = []
 var xp_frames = []
 
+# the amount of frames per sequential level up change
+var level_queue_frames = 4
+var level_count = 0
+
 var held_animation = false
 
 var temp_color = Color("5da0ff")
@@ -92,6 +96,10 @@ func animate_new_xp():
 	#use the new_xp_frames to animate, then put them in the xp_frames
 	
 func animate_level():
+	if (level_count < level_queue_frames):
+		level_count += 1
+		return
+	level_count = 0
 	$LevelDisplay.text = str("Level: ", level_queue.pop_front())
 	#if we are finished animating the level ups
 	if (level_queue.size() == 0):

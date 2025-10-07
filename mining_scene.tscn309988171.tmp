@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu13wp17qoa8q"]
+
+[ext_resource type="Script" uid="uid://bgmgutdk5siiv" path="res://mining_scene.gd" id="1_arspg"]
+[ext_resource type="FontFile" uid="uid://cthm6xji2bhm" path="res://assets/fonts/coolvetica rg.otf" id="1_elgwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pha17"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf7a8"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iisf0"]
+bg_color = Color(0, 0.490196, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MiningScene" type="Node2D"]
+script = ExtResource("1_arspg")
+
+[node name="MinePanel" type="Panel" parent="."]
+offset_right = 600.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pha17")
+
+[node name="MineTitle" type="Label" parent="MinePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 77.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_elgwo")
+theme_override_font_sizes/font_size = 64
+text = "The Mine"
+
+[node name="Button" type="Button" parent="MinePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -220.0
+offset_right = -100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_elgwo")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_jf7a8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iisf0")
+toggle_mode = true
+text = "Toggle
+Mining"
+
+[node name="MinedItemsLabel" type="Label" parent="MinePanel"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 80.0
+offset_right = 420.0
+offset_bottom = 580.0
+
+[connection signal="toggled" from="MinePanel/Button" to="." method="_on_button_toggled"]

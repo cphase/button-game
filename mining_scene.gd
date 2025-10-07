@@ -3,8 +3,9 @@ extends Node2D
 signal mined_something(item)
 
 var mining = false
-var items = {"Stone, Coal, Iron, Gold, Diamond"}
-var item_chances = {0.5, 0.3, 0.2, 0.1, 0.01}
+var items = ["Stone, Coal, Iron, Gold, Diamond"]
+var item_chances = [0.5, 0.3, 0.2, 0.1, 0.01]
+var item_xp_values = [1, 10, 30, 50, 100]
 var mining_speed = 1
 var mining_multiplier = 1
 #figure out how chances work with pick and levels
@@ -25,8 +26,14 @@ func _physics_process(delta):
 	#animate at a constant framerate
 	if physics_frame_count >= (1 / delta) / mining_speed:
 		if mining:
+			
 			$MinePanel/MinedItemsLabel.text = str($MinePanel/MinedItemsLabel.text, "hello\n")
 		physics_frame_count = 0
 	
 func _on_button_toggled(toggled_on):
 	mining = toggled_on
+	
+func roll_for_mined_item():
+	var roll = (randi() % 100) / 100.0
+	#for loop, make items class
+	
